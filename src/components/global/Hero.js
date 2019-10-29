@@ -6,11 +6,12 @@ export default function Hero({ img, styleClass, title, children }) {
       <h1 className="title text-white text-uppercase text-center display-4 font-weight-bold">
         {title}
       </h1>
+      {children}
     </BackgroundImage>
   )
 }
 
-BackgroundImage.defaultProps = {
+Hero.defaultProps = {
   title: "default title",
   styleClass: "default-background",
 }

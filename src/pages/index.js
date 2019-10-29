@@ -1,13 +1,12 @@
 import React from "react"
 import { graphql } from "gatsby"
-
+import PropTypes from "prop-types"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Hero from "../components/global/Hero"
 import Info from "../components/Home/Info"
 const IndexPage = ({ data }) => (
   <Layout>
-    <SEO title="Home" />
     <Hero
       img={data.img.childImageSharp.fluid}
       title="Joe Mama's coffee"
@@ -28,5 +27,7 @@ export const query = graphql`
     }
   }
 `
-
+IndexPage.propTypes = {
+  data: PropTypes.node.isRequired,
+}
 export default IndexPage
