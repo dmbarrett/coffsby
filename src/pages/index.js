@@ -1,10 +1,12 @@
 import React from "react"
 import { graphql } from "gatsby"
-import PropTypes from "prop-types"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Hero from "../components/global/Hero"
 import Info from "../components/Home/Info"
+import Menu from "../components/Home/Menu"
+import Products from "../components/Home/Products"
+import Contact from "../components/Home/Contact"
 const IndexPage = ({ data }) => (
   <Layout>
     <Hero
@@ -13,6 +15,9 @@ const IndexPage = ({ data }) => (
       styleClass="default-background"
     />
     <Info />
+    <Menu items={data.menu} />
+    <Products />
+    <Contact />
   </Layout>
 )
 
@@ -25,9 +30,24 @@ export const query = graphql`
         }
       }
     }
+    menu: allContentfulCoffeeItem {
+      edges {
+        node {
+          id
+          title
+          price
+          category
+          description {
+            description
+          }
+          image {
+            fixed(width: 50, height: 50) {
+              ...GatsbyContentfulFixed
+            }
+          }
+        }
+      }
+    }
   }
 `
-IndexPage.propTypes = {
-  data: PropTypes.node.isRequired,
-}
 export default IndexPage
